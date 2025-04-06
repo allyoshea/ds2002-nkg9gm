@@ -10,5 +10,11 @@ urllib.request.urlretrieve(url,file_name)
 s3.upload_file(file_name, bucket, file_name, ExtraArgs={'ACL': 'public-read'})
 
 # Generate a public URL (S3 static website endpoint or direct link)
-public_url = f"https://{bucket}.s3.amazonaws.com/{file_name}"
-print(public_url)
+
+presigned_url = s3.generate_presigned_url(
+    'get_object',
+    Params={'Bucket': bucket, 'Key': file_name},
+    ExpiresIn=3600  
+
+# Output the presigned URL
+print(presigned_url)
