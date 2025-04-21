@@ -15,6 +15,6 @@ presigned_url = s3.generate_presigned_url(
     'get_object',
     Params={'Bucket': bucket, 'Key': file_name},
     ExpiresIn=3600  
-
+)
 # Output the presigned URL
 print(presigned_url)
